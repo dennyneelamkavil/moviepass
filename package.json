@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "build": "npm install --prefix ./frontend && npm run build --prefix ./frontend && npm install",
+    "build": "npm install --prefix ./frontend && npm run build --prefix ./frontend && npm install"
   },
   "author": "Denny N J",
   "license": "ISC",

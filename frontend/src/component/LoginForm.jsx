@@ -55,7 +55,7 @@ export default function LoginForm() {
           {...register("email", { required: "Email is required" })}
         />
         {errors.email && (
-          <p className="text-red-500 text-sm">{errors.email.message}</p>
+          <span className="text-red-500 text-sm">{errors.email.message}</span>
         )}
 
         <input
@@ -65,7 +65,9 @@ export default function LoginForm() {
           {...register("password", { required: "Password is required" })}
         />
         {errors.password && (
-          <p className="text-red-500 text-sm">{errors.password.message}</p>
+          <span className="text-red-500 text-sm">
+            {errors.password.message}
+          </span>
         )}
 
         <button className="btn btn-primary w-full">Login</button>

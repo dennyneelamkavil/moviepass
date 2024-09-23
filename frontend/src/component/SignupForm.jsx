@@ -50,7 +50,7 @@ export default function SignupForm() {
           {...register("name", { required: "Name is required" })}
         />
         {errors.name && (
-          <p className="text-red-500 text-sm">{errors.name.message}</p>
+          <span className="text-red-500 text-sm">{errors.name.message}</span>
         )}
         <input
           type="text"
@@ -59,7 +59,7 @@ export default function SignupForm() {
           {...register("phone", { required: "Phone is required" })}
         />
         {errors.phone && (
-          <p className="text-red-500 text-sm">{errors.phone.message}</p>
+          <span className="text-red-500 text-sm">{errors.phone.message}</span>
         )}
         <input
           type="email"
@@ -68,7 +68,7 @@ export default function SignupForm() {
           {...register("email", { required: "Email is required" })}
         />
         {errors.email && (
-          <p className="text-red-500 text-sm">{errors.email.message}</p>
+          <span className="text-red-500 text-sm">{errors.email.message}</span>
         )}
 
         <input
@@ -84,7 +84,9 @@ export default function SignupForm() {
           })}
         />
         {errors.newPassword && (
-          <p className="text-red-500 text-sm">{errors.newPassword.message}</p>
+          <span className="text-red-500 text-sm">
+            {errors.newPassword.message}
+          </span>
         )}
 
         <input
@@ -98,7 +100,9 @@ export default function SignupForm() {
           })}
         />
         {errors.password && (
-          <p className="text-red-500 text-sm">{errors.password.message}</p>
+          <span className="text-red-500 text-sm">
+            {errors.password.message}
+          </span>
         )}
 
         <button className="btn btn-primary w-full">Sign Up</button>

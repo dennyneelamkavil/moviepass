@@ -2,7 +2,16 @@ import { Link } from "react-router-dom";
 
 const Terms = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
+    <div
+      className="min-h-screen flex flex-col items-end justify-center p-6"
+      style={{
+        backgroundImage: 'url("/terms_page.jpg")',
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        opacity: "0.8",
+      }}
+    >
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-3xl text-left">
         <h1 className="text-3xl font-bold mb-6 text-gray-800">
           Terms of Service & Privacy Policy

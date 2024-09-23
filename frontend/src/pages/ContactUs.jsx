@@ -26,23 +26,32 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-3xl text-center">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800">Contact Us</h1>
-        <p className="text-gray-600 text-lg mb-6">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center p-6"
+      style={{
+        backgroundImage: 'url("/contact_page.jpg")',
+        backgroundSize: "cover",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        opacity: "0.8",
+      }}
+    >
+      <div className="bg-white/50 p-8 rounded-lg shadow-lg max-w-3xl text-center">
+        <h1 className="text-3xl font-bold mb-6 text-gray-900">Contact Us</h1>
+        <p className="text-black text-lg mb-6">
           Got a question? We&apos;re here to help! Feel free to reach out to us
           with any inquiries or feedback.
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div>
-            <label className="block text-left text-gray-600 font-medium">
+            <label className="block text-left text-black font-medium">
               Your Name
             </label>
             <input
               type="text"
               {...register("name", { required: "Name is required" })}
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg bg-white/50"
               placeholder="John Doe"
             />
             {errors.name && (
@@ -50,7 +59,7 @@ const ContactUs = () => {
             )}
           </div>
           <div>
-            <label className="block text-left text-gray-600 font-medium">
+            <label className="block text-left text-black font-medium">
               Your Email
             </label>
             <input
@@ -62,7 +71,7 @@ const ContactUs = () => {
                   message: "Email is not valid",
                 },
               })}
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg bg-white/50"
               placeholder="johndoe@example.com"
             />
             {errors.email && (
@@ -70,12 +79,12 @@ const ContactUs = () => {
             )}
           </div>
           <div>
-            <label className="block text-left text-gray-600 font-medium">
+            <label className="block text-left text-black font-medium">
               Message
             </label>
             <textarea
               {...register("message", { required: "Message is required" })}
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 border rounded-lg bg-white/50"
               rows="4"
               placeholder="Your message..."
             ></textarea>

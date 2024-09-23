@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import cities from "../assets/cities.json";
 import { useUpdateUserMutation } from "../api/userApiSlice";
 import { toast } from "react-toastify";
+import { IoMdContact } from "react-icons/io";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -87,7 +88,10 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <button className="btn" onClick={() => setModalOpen(true)}>
+        <button
+          className="btn hidden md:block"
+          onClick={() => setModalOpen(true)}
+        >
           {user?.city || "Select City"}
         </button>
 
@@ -144,13 +148,8 @@ export default function Navbar() {
             onClick={() => setDropdownOpen(!dropdownOpen)}
           >
             <div tabIndex={0} role="button" className="flex items-center">
-              <div className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  />
-                </div>
+              <div className="avatar">
+                <IoMdContact size={30} />
               </div>
               <p className="hidden md:block ml-2">Hi, {user.name}</p>
             </div>

@@ -9,7 +9,6 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "build": "npm install --prefix ./frontend && npm run build --prefix ./frontend && npm install",
-    "postinstall": "npm run build"
   },
   "author": "Denny N J",
   "license": "ISC",

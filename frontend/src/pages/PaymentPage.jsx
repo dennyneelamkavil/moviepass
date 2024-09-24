@@ -52,8 +52,8 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="container mx-auto p-4 flex flex-col place-items-center justify-center">
-      <div className="card bg-base-100 shadow-xl w-1/2">
+    <div className="container mx-auto p-4 flex flex-col place-items-center justify-center bg-purple-50">
+      <div className="card bg-purple-200 shadow-xl w-1/2">
         <figure>
           <img
             src={movieID?.image}

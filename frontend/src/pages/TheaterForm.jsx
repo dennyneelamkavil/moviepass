@@ -209,7 +209,7 @@ export default function TheaterForm() {
                 </div>
               </div>
 
-              {isEditMode ? null : (
+              {!isEditMode && (
                 <div className="mb-4">
                   <h3 className="text-lg font-bold">Seating Layout</h3>
                   <p className="text-gray-500">

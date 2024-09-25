@@ -13,7 +13,7 @@ const SeatSchema = new mongoose.Schema(
     },
     seatType: {
       type: String,
-      enum: ["standard", "premium"],
+      enum: ["Standard", "Premium"],
       required: true,
     },
     isAvailable: {

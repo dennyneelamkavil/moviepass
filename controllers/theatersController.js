@@ -16,8 +16,8 @@ export async function addNewTheater(req, res) {
   const seatPromises = [];
   for (const seatData of seatingLayout) {
     for (const row of seatData.rows) {
-      for (const seat of row.seats) {
-        const uniqueSeatId = `${row.rowname}-${seat.seat_id}`;
+      for (let seatIndex = 1; seatIndex <= row.seats; seatIndex++) {
+        const uniqueSeatId = `${row.rowname}-${seatIndex}`;
 
         const existingSeat = await SeatModel.findOne({
           theaterID: theater._id,
@@ -40,8 +40,6 @@ export async function addNewTheater(req, res) {
   }
 
   const seats = await Promise.all(seatPromises);
-  console.log(seats);
-
   theater.seatingLayout = seats.map((seat) => seat._id);
   await theater.save();
   res.status(201).json({ message: "Theater created successfully" });
@@ -73,7 +71,7 @@ export async function getTheaterByOwner(req, res) {
 
 export async function updateTheater(req, res) {
   const { id } = req.params;
-  const { name, location, seatingLayout, showtimes } = req.body;
+  const { name, location } = req.body;
   const newData = { name, location };
   const theater = await TheaterModel.findOneAndUpdate({ _id: id }, newData);
   if (!theater) {

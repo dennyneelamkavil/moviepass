@@ -45,6 +45,12 @@ export default function BookingPage() {
     return acc;
   }, {});
 
+  const sortedSeatTypes = Object.keys(groupedSeats || {}).sort((a, b) => {
+    if (a === "Premium") return -1;
+    if (b === "Premium") return 1;
+    return 0;
+  });
+
   const calculateTotalAmount = () => {
     return selectedSeats.reduce((total, seatId) => {
       const seat = theater.seatingLayout.find((s) => s._id === seatId);
@@ -136,7 +142,7 @@ export default function BookingPage() {
               </h3>
 
               {/* Display seats by section (premium, standard) and by rows */}
-              {Object.keys(groupedSeats || {}).map((seatType) => (
+              {sortedSeatTypes.map((seatType) => (
                 <div key={seatType}>
                   <h4 className="text-lg font-bold uppercase">
                     {seatType} Seats

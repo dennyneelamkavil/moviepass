@@ -10,6 +10,7 @@ import {
   useGetTheaterByIdQuery,
 } from "../api/theaterSlice";
 import { toast } from "react-toastify";
+import SeatingLayoutPreview from "../component/SeatingLayoutPreview";
 
 export default function TheaterForm() {
   const { id } = useParams();
@@ -22,6 +23,7 @@ export default function TheaterForm() {
     register,
     setValue,
     control,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -128,14 +130,14 @@ export default function TheaterForm() {
       if (existingTypes.length < 2) {
         const newType =
           existingTypes.length === 0
-            ? "Standard"
-            : existingTypes[0] === "Standard"
             ? "Premium"
-            : "Standard";
+            : existingTypes[0] === "Premium"
+            ? "Standard"
+            : "Premium";
         if (!existingTypes.includes(newType)) {
           addSeating({
             type: newType,
-            price: newType === "Standard" ? 300 : 500,
+            price: newType === "Premium" ? 500 : 300,
             rows: [{ rowname: availableLetter, seats: 10 }],
           });
         } else {
@@ -154,9 +156,15 @@ export default function TheaterForm() {
     setValue("seatingLayout", seatingFields);
   };
 
+  const seatingLayout = watch("seatingLayout");
+
   return (
-    <div className="container mx-auto px-4 md:px-8 pt-20 pb-10 max-w-5xl">
-      <div className="flex space-x-4">
+    <div
+      className={`container mx-auto px-4 md:px-8 pt-20 pb-10 ${
+        isEditMode ? "max-w-5xl" : "w-full"
+      }`}
+    >
+      <div className="flex gap-6 flex-col md:flex-row">
         <div className="flex-1 bg-white rounded-lg shadow-lg p-4">
           <div className="bg-white p-3 rounded-t-lg">
             <div className="flex justify-center mb-4">
@@ -212,10 +220,6 @@ export default function TheaterForm() {
               {!isEditMode && (
                 <div className="mb-4">
                   <h3 className="text-lg font-bold">Seating Layout</h3>
-                  <p className="text-gray-500">
-                    Please try to add the rows in order, from top to bottom. It
-                    will be displayed in the order you add them.
-                  </p>
                   <p className="text-blue-400 mb-2">
                     Add minimum 5 rows and minimum 10 seats per row.
                   </p>
@@ -369,6 +373,13 @@ export default function TheaterForm() {
               </div>
             </form>
           </div>
+        </div>
+        <div
+          className={`${
+            isEditMode ? "hidden" : "block"
+          } w-full md:w-1/2 bg-white rounded-lg shadow-lg p-4`}
+        >
+          <SeatingLayoutPreview seatingLayout={seatingLayout} />
         </div>
       </div>
     </div>

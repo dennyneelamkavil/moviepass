@@ -83,36 +83,25 @@ export default function BookingPage() {
 
   return (
     <div className="container mx-auto p-4 flex flex-col lg:flex-row justify-center gap-8">
-      <div className="card bg-base-100 shadow-xl w-full lg:w-1/2">
-        <figure>
-          <img
-            src={showtime?.movieID?.image}
-            alt={showtime?.movieID?.title}
-            className="w-full h-auto max-h-96 object-contain"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title text-xl">{showtime?.movieID?.title}</h2>
-          <div className="flex flex-col justify-between">
-            <div className="flex gap-4 items-center">
-              <h2 className="text-lg font-semibold">Duration: </h2>
-              <p>{showtime?.movieID?.duration} minutes</p>
-            </div>
-            <div className="flex gap-4 items-center">
-              <h2 className="text-lg font-semibold">Genre: </h2>
-              <p>{showtime?.movieID?.genre}</p>
-            </div>
-            {/* <div className="flex gap-4 items-center">
-              <h2 className="text-lg font-semibold">Rating: </h2>
-              <p>{showtime?.movieID?.rating}</p>
-            </div> */}
-          </div>
-        </div>
-      </div>
       <div className="flex flex-col gap-6 w-full">
         <div className="card bg-base-100 w-full shadow-xl">
           <div className="card-body">
-            <h3 className="text-xl font-semibold text-center mx-5">
+            <div className="flex text-center justify-between flex-col md:flex-row bg-slate-400 p-4 rounded-lg">
+              <h2 className="card-title text-xl">Movie: {showtime?.movieID?.title}</h2>
+              <div className="flex gap-4 items-center">
+                <h2 className="text-lg font-semibold">Duration: </h2>
+                <p>{showtime?.movieID?.duration} minutes</p>
+              </div>
+              <div className="flex gap-4 items-center">
+                <h2 className="text-lg font-semibold">Genre: </h2>
+                <p>{showtime?.movieID?.genre}</p>
+              </div>
+              {/* <div className="flex gap-4 items-center">
+              <h2 className="text-lg font-semibold">Rating: </h2>
+              <p>{showtime?.movieID?.rating}</p>
+            </div> */}
+            </div>
+            <h3 className="text-xl font-semibold text-left mx-5">
               Selected Showtime and Theater
             </h3>
             <ul className="flex text-center justify-between flex-col md:flex-row">
@@ -150,11 +139,11 @@ export default function BookingPage() {
                   {Object.keys(groupedSeats[seatType]).map((rowName) => (
                     <div key={rowName}>
                       <h5 className="font-medium">{`Row ${rowName}`}</h5>
-                      <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-10 gap-2">
+                      <div className="flex flex-wrap justify-center gap-3">
                         {groupedSeats[seatType][rowName].map((seat) => (
                           <button
                             key={seat._id}
-                            className={`p-2 border rounded ${
+                            className={`p-2 border rounded w-[60px] ${
                               selectedSeats.includes(seat._id)
                                 ? "bg-green-500 text-white"
                                 : seat.isAvailable

@@ -7,8 +7,8 @@ if (!secretKey) {
 
 export function generateToken(name, email, role, id) {
   const userData = { name, email, role, id };
-  const options = { expiresIn: "1d", issuer: "backend server", audience: "frontend server" };
-  const token = jwt.sign(userData, secretKey, options);
+  // const options = { expiresIn: "1d", issuer: "backend server", audience: "frontend server" };
+  const token = jwt.sign(userData, secretKey);
   return token;
 }
 

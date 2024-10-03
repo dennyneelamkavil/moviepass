@@ -57,7 +57,7 @@ export default function MovieDetails() {
           </div>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="text-blue-500 mt-2 underline text-sm"
+            className="text-blue-500 mt-2 underline text-sm opacity-0"
           >
             {isExpanded ? "Read Less" : "Read More"}
           </button>

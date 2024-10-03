@@ -328,7 +328,7 @@ export default function MovieForm() {
                     {...register("image", {
                       required: !isEditMode && "Image is required",
                     })}
-                    className="w-full border border-gray-300 rounded-md p-2"
+                    className="w-full border border-gray-300 rounded-md p-2 cursor-pointer"
                     onChange={handleImageChange}
                   />
                   {errors.image && (

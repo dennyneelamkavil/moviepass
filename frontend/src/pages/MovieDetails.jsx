@@ -14,6 +14,10 @@ export default function MovieDetails() {
   const { data, refetch } = useGetMovieByIdQuery(movieId);
   const movie = data?.movie || {};
 
+  const showtimes = movie?.showtimes
+    ?.filter((showtime) => new Date(showtime?.date) >= new Date())
+    .sort((a, b) => new Date(a?.date) - new Date(b?.date));
+
   useEffect(() => {
     refetch();
   }, [refetch]);
@@ -106,7 +110,7 @@ export default function MovieDetails() {
 
             <h3 className="text-xl font-semibold mt-5">Available Showtimes</h3>
             <ul className="space-y-2">
-              {movie?.showtimes?.map((showtime) => (
+              {showtimes?.map((showtime) => (
                 <li key={showtime?._id} className="flex justify-between">
                   <span>{showtime?.theaterID?.name}</span>
                   <span>{new Date(showtime?.date).toDateString()}</span>

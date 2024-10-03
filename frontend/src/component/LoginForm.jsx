@@ -13,7 +13,7 @@ export default function LoginForm() {
     reset,
     formState: { errors },
   } = useForm();
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
 
   const toLogin = async (data) => {
@@ -70,7 +70,9 @@ export default function LoginForm() {
           </span>
         )}
 
-        <button className="btn btn-primary w-full">Login</button>
+        <button className="btn btn-primary w-full" disabled={isLoading}>
+          {isLoading ? "Logging in..." : "Login"}
+        </button>
       </form>
       <p className="text-center text-sm mt-4">
         Don&#39;t have an account?&nbsp;

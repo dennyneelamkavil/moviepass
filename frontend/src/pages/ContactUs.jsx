@@ -12,7 +12,7 @@ const ContactUs = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const [contactUsRequest] = useContactUsRequestMutation();
+  const [contactUsRequest, { isLoading }] = useContactUsRequestMutation();
 
   const onSubmit = async (formData) => {
     try {
@@ -96,8 +96,9 @@ const ContactUs = () => {
           <button
             type="submit"
             className="btn btn-primary bg-blue-500 text-white w-full p-3 rounded-lg hover:bg-blue-600"
+            disabled={isLoading}
           >
-            Send Message
+            {isLoading ? "Sending..." : "Send Message"}
           </button>
         </form>
       </div>

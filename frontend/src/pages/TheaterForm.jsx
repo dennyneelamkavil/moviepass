@@ -35,8 +35,8 @@ export default function TheaterForm() {
     skip: !isEditMode,
   });
 
-  const [updateTheater] = useUpdateTheaterMutation();
-  const [addNewTheater] = useAddNewTheaterMutation();
+  const [updateTheater, { isLoading: updating }] = useUpdateTheaterMutation();
+  const [addNewTheater, { isLoading: adding }] = useAddNewTheaterMutation();
 
   const {
     fields: seatingFields,
@@ -367,8 +367,15 @@ export default function TheaterForm() {
                 <button
                   type="submit"
                   className="bg-green-500 text-white hover:opacity-90 px-6 py-2 rounded-lg flex-shrink-0"
+                  disabled={updating || adding}
                 >
-                  {isEditMode ? "Update Theater" : "Add Theater"}
+                  {isEditMode
+                    ? updating
+                      ? "Updating..."
+                      : "Update Theater"
+                    : adding
+                    ? "Adding..."
+                    : "Add Theater"}
                 </button>
               </div>
             </form>

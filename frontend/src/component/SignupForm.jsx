@@ -13,7 +13,7 @@ export default function SignupForm() {
     watch,
     formState: { errors },
   } = useForm();
-  const [signup] = useSignupMutation();
+  const [signup, { isLoading }] = useSignupMutation();
 
   const toSignup = async (data) => {
     try {
@@ -105,7 +105,9 @@ export default function SignupForm() {
           </span>
         )}
 
-        <button className="btn btn-primary w-full">Sign Up</button>
+        <button className="btn btn-primary w-full" disabled={isLoading}>
+          {isLoading ? "Signing up..." : "Sign Up"}
+        </button>
       </form>
       <p className="text-center text-sm mt-4">
         Already have an account?{" "}

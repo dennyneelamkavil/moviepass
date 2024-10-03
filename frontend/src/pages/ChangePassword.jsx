@@ -16,7 +16,8 @@ const ChangePassword = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [changePasswordRequest] = useChangePasswordRequestMutation();
+  const [changePasswordRequest, { isLoading }] =
+    useChangePasswordRequestMutation();
 
   const onSubmit = async (formData) => {
     try {
@@ -119,8 +120,9 @@ const ChangePassword = () => {
           <button
             type="submit"
             className="btn btn-primary bg-blue-500 text-white w-full p-3 rounded-lg hover:bg-blue-600"
+            disabled={isLoading}
           >
-            Change Password
+            {isLoading ? "Changing Password ..." : "Change Password"}
           </button>
         </form>
       </div>

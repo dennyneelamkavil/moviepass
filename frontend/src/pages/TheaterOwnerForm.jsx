@@ -28,8 +28,8 @@ export default function TheaterOwnerForm() {
     skip: !isEditMode,
   });
 
-  const [editUser] = useUpdateUserMutation();
-  const [addUser] = useSignupMutation();
+  const [editUser, { isLoading: updating }] = useUpdateUserMutation();
+  const [addUser, { isLoading: adding }] = useSignupMutation();
 
   useEffect(() => {
     if (isEditMode && data?.user) {
@@ -236,8 +236,15 @@ export default function TheaterOwnerForm() {
                 <button
                   type="submit"
                   className="bg-green-500 text-white hover:opacity-90 px-6 py-2 rounded-lg"
+                  disabled={updating || adding}
                 >
-                  {isEditMode ? "Update Theater Owner" : "Add Theater Owner"}
+                  {isEditMode
+                    ? updating
+                      ? "Updating..."
+                      : "Update Theater Owner"
+                    : adding
+                    ? "Adding..."
+                    : "Add Theater Owner"}
                 </button>
               </div>
             </form>

@@ -31,8 +31,8 @@ export default function ShowtimesForm() {
   const { data: moviesData = {} } = useGetAllMoviesQuery();
   const movies = moviesData.movies || [];
 
-  const [updateShowtime] = useUpdateShowtimeMutation();
-  const [addNewShowtime] = useAddNewShowtimeMutation();
+  const [updateShowtime, { isLoading: updating }] = useUpdateShowtimeMutation();
+  const [addNewShowtime, { isLoading: adding }] = useAddNewShowtimeMutation();
 
   useEffect(() => {
     if (isEditMode && data?.showtime) {
@@ -124,6 +124,11 @@ export default function ShowtimesForm() {
                   </label>
                   <input
                     type="date"
+                    min={
+                      new Date(new Date().setDate(new Date().getDate() + 1))
+                        .toISOString()
+                        .split("T")[0]
+                    }
                     {...register("date", { required: "Date is required" })}
                     className="w-full border border-gray-300 rounded-md p-2"
                   />
@@ -161,8 +166,15 @@ export default function ShowtimesForm() {
                 <button
                   type="submit"
                   className="bg-green-500 text-white hover:opacity-90 px-6 py-2 rounded-lg"
+                  disabled={updating || adding}
                 >
-                  {isEditMode ? "Update Showtime" : "Add Showtime"}
+                  {isEditMode
+                    ? updating
+                      ? "Updating..."
+                      : "Update Showtime"
+                    : adding
+                    ? "Adding..."
+                    : "Add Showtime"}
                 </button>
               </div>
             </form>

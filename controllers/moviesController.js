@@ -14,6 +14,7 @@ export async function addNewMovie(req, res) {
 
 export async function getAllMovies(req, res) {
   const movies = await MovieModel.find()
+    .sort({ createdAt: -1, _id: 1 })
     .populate({
       path: "showtimes",
       populate: {

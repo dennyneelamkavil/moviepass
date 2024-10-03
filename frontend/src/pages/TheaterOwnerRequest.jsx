@@ -14,7 +14,7 @@ export default function TheaterOwnerRequest() {
     formState: { errors },
   } = useForm();
 
-  const [requestVerification] = useRequestVerificationMutation();
+  const [requestVerification, { isLoading }] = useRequestVerificationMutation();
 
   const onSubmit = async (formData) => {
     if (!user) {
@@ -72,8 +72,9 @@ export default function TheaterOwnerRequest() {
             <button
               type="submit"
               className="bg-blue-500 text-white hover:opacity-90 px-6 py-2 rounded-lg"
+              disabled={isLoading}
             >
-              Send Request
+              {isLoading ? "Sending..." : "Send Request"}
             </button>
           </div>
         </form>

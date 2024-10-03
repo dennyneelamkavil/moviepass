@@ -27,8 +27,8 @@ export default function MovieForm() {
     skip: !isEditMode,
   });
 
-  const [updateMovie] = useUpdateMovieMutation();
-  const [addNewMovie] = useAddNewMovieMutation();
+  const [updateMovie, { isLoading: updating }] = useUpdateMovieMutation();
+  const [addNewMovie, { isLoading: adding }] = useAddNewMovieMutation();
 
   useEffect(() => {
     if (isEditMode && data?.movie) {
@@ -364,8 +364,15 @@ export default function MovieForm() {
                 <button
                   type="submit"
                   className="bg-green-500 text-white hover:opacity-90 px-6 py-2 rounded-lg"
+                  disabled={updating || adding}
                 >
-                  {isEditMode ? "Update Movie" : "Add Movie"}
+                  {isEditMode
+                    ? updating
+                      ? "Updating Movie..."
+                      : "Update Movie"
+                    : adding
+                    ? "Adding Movie..."
+                    : "Add Movie"}
                 </button>
               </div>
             </form>

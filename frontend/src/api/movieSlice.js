@@ -30,8 +30,14 @@ export const movieApi = createApi({
       }),
     }),
     getlatestmovies: builder.query({
+      query: (year) => ({
+        url: `/getlatestmovies/${year}`,
+        method: "GET",
+      }),
+    }),
+    getTrendingMovies: builder.query({
       query: () => ({
-        url: "/getlatestmovies",
+        url: "/trending",
         method: "GET",
       }),
     }),
@@ -51,4 +57,5 @@ export const {
   useGetAllMoviesQuery,
   useGetlatestmoviesQuery,
   useDeleteMovieMutation,
+  useGetTrendingMoviesQuery,
 } = movieApi;

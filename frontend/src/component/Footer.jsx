@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <footer className="footer flex flex-col justify-center items-center bg-base-200 text-base-content p-10 w-full">
@@ -13,15 +20,30 @@ export default function Footer() {
         <div className="flex flex-row justify-around w-full">
           <div className="flex flex-col gap-3 text-center">
             <h6 className="footer-title">Movies</h6>
-            <Link to="#nowshowing" className="link link-hover">
-              Now Showing
-            </Link>
-            <Link to="#comingsoon" className="link link-hover">
+            <button
+              className="link link-hover"
+              onClick={() => scrollToSection("trending")}
+            >
+              Trending
+            </button>
+            <button
+              className="link link-hover"
+              onClick={() => scrollToSection("comingsoon")}
+            >
               Coming Soon
-            </Link>
-            <Link to="#latest" className="link link-hover">
+            </button>
+            <button
+              className="link link-hover"
+              onClick={() => scrollToSection("latest")}
+            >
               Latest Releases
-            </Link>
+            </button>
+            <button
+              className="link link-hover"
+              onClick={() => scrollToSection("movies")}
+            >
+              All Movies
+            </button>
           </div>
           <div className="flex flex-col gap-3 text-center">
             <h6 className="footer-title">Help</h6>

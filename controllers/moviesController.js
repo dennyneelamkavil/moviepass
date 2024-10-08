@@ -44,7 +44,8 @@ export async function getMovieById(req, res) {
 }
 
 export async function getLatestMovies(req, res) {
-  const latestMovies = await MovieModel.find()
+  const { year } = req.params;
+  const latestMovies = await MovieModel.find({ year: year })
     .populate({
       path: "showtimes",
       populate: {
@@ -57,6 +58,21 @@ export async function getLatestMovies(req, res) {
     .exec();
 
   res.status(200).json({ movies: latestMovies });
+}
+
+export async function getTrendingMovies(req, res) {
+  const trendingMovies = await MovieModel.find()
+    .populate({
+      path: "showtimes",
+      populate: {
+        path: "theaterID",
+        model: "Theaters",
+      },
+    })
+    .sort({ createdAt: 1, _id: 1 })
+    .limit(6)
+    .exec();
+  res.status(200).json({ movies: trendingMovies });
 }
 
 export async function updateMovie(req, res) {
